@@ -3,8 +3,8 @@
 A variety of java image processing algorithms implemented in Java for easier use in things such as mobile applications.
 
 Contains:
-Markup :  * Gaussian Blur
-          * Canny Edge
-          * Hough Circle Transforms
-          * Cropping Around Circles
-          * Color Composition Analysis        
+ * Gaussian Blur
+ * Canny Edge
+ * Hough Circle Transforms
+ * Cropping Around Circles
+ * Color Composition Analysis        
