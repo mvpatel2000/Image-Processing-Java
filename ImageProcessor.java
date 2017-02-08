@@ -17,7 +17,8 @@ public class ImageProcessor
    
    public static void main(String[] args) throws FileNotFoundException, IOException {    
       //sample code for processing images        
-      BufferedImage image = ImageIO.read(new File("addfilelocation.jpg"));
+      BufferedImage img = ImageIO.read(new File("testImage.jpg"));
+      BufferedImage white = img;
       int w = img.getWidth();
       int h = img.getHeight();
 
@@ -32,14 +33,14 @@ public class ImageProcessor
                      
       image = toARGB(imageBlur,GCanny);      
       img.setRGB(0,0,w,h,image,0,w); //prints out image
-      File outputfile = new File("imagename_canny.png"); //canny image
+      File outputfile = new File("testImage_canny.png"); //canny image
       ImageIO.write(img, "png", outputfile);
                
       double[][] GCircle = getCircle(clone(GCanny), imageBlur, h, w);       
                
       image = toARGBCircle(imageBlur,GCircle);      
       img.setRGB(0,0,w,h,image,0,w); //prints out image
-      outputfile = new File(location+"Circle/"+ans+"_"+(z+shift)+"_circle.png"); //finds circle
+      outputfile = new File("testImage_circle.png"); //finds circle
       ImageIO.write(img, "png", outputfile);
             
       for(int i=0; i<3; i++) {  //crops around circles (3 largest)
@@ -48,18 +49,18 @@ public class ImageProcessor
             try {
                img = new BufferedImage(R[i]*2,R[i]*2,BufferedImage.TYPE_INT_ARGB);
                img.setRGB(0,0,R[i]*2,R[i]*2,image,0,R[i]*2);
-               outputfile = new File(location+"Crop/"+ans+"_"+circleCount+"_crop.png");
+               outputfile = new File("testImage_crop"+i+".png");
                ImageIO.write(img, "png", outputfile);
                circleCount++;
             }
             catch(Exception e) {
-               outputfile = new File(location+"Crop/"+ans+"_"+circleCount+"_crop.png");
+               outputfile = new File("testImage_crop"+i+".png");
                ImageIO.write(white, "png", outputfile);
                circleCount++;
             }
          }
          else {
-            outputfile = new File(location+"Crop/"+ans+"_"+circleCount+"_crop.png");
+            outputfile = new File("testImage_crop"+i+".png");
             ImageIO.write(white, "png", outputfile);
             circleCount++;
          }
